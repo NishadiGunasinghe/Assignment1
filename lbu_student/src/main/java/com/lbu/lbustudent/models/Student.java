@@ -1,5 +1,6 @@
 package com.lbu.lbustudent.models;
 
+import com.lbu.lbustudent.dtos.auth.JWTTokenDto;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,4 +37,7 @@ public class Student {
     @Column(name = "updated_timestamp")
     @UpdateTimestamp
     private Timestamp updatedTimestamp;
+
+    @Transient
+    private JWTTokenDto jwtTokenDto;
 }

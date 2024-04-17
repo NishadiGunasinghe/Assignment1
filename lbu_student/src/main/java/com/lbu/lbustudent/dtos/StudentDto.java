@@ -1,5 +1,6 @@
 package com.lbu.lbustudent.dtos;
 
+import com.lbu.lbustudent.dtos.auth.JWTTokenDto;
 import lombok.Data;
 
 import java.sql.Timestamp;
@@ -16,4 +17,5 @@ public class StudentDto {
     private Timestamp createdTimestamp;
     private Timestamp updatedTimestamp;
     private List<String> courseHrefs;
+    private JWTTokenDto jwtTokenDto;
 }
