@@ -1,5 +1,8 @@
 package com.lbu.lbustudent.commons.exeptions;
 
+import lombok.Getter;
+
+@Getter
 public class LBUStudentsRuntimeException extends RuntimeException {
 
     private final String message;

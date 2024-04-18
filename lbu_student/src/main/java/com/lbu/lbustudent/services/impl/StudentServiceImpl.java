@@ -1,7 +1,9 @@
 package com.lbu.lbustudent.services.impl;
 
 import com.lbu.lbustudent.commons.exeptions.LBUStudentsRuntimeException;
+import com.lbu.lbustudent.commons.externalservices.auth.services.AuthService;
 import com.lbu.lbustudent.commons.externalservices.course.services.CourseService;
+import com.lbu.lbustudent.dtos.auth.JWTTokenDto;
 import com.lbu.lbustudent.dtos.course.CourseDto;
 import com.lbu.lbustudent.models.Enrolment;
 import com.lbu.lbustudent.models.Student;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.lbu.lbustudent.commons.constants.ErrorConstants.AUTH_SERVICE_USER_UPDATE_ERROR;
 import static com.lbu.lbustudent.commons.constants.ErrorConstants.STUDENT_NOT_AVAILABLE;
 
 @Slf4j
@@ -23,10 +26,13 @@ public class StudentServiceImpl implements StudentService{
 
     private final StudentRepository studentRepository;
     private final CourseService courseService;
+    private final AuthService authService;
 
     public StudentServiceImpl(StudentRepository studentRepository,
+                              AuthService authService,
                               CourseService courseService) {
         this.studentRepository = studentRepository;
+        this.authService = authService;
         this.courseService = courseService;
     }
 
@@ -58,6 +64,14 @@ public class StudentServiceImpl implements StudentService{
             enrollment.setCourseHref(courseHref); // Set the course href.
             student.setEnrollments(List.of(enrollment)); // Set student's enrolments.
             Student savedStudent = studentRepository.saveAndFlush(student); // Save and flush changes to database.
+            JWTTokenDto jwtTokenDto;
+            try {
+                jwtTokenDto = authService.updateUserStatus(authUserHref, token);
+                savedStudent.setJwtTokenDto(jwtTokenDto);
+                log.info("Auth user updated to STUDENT {}", jwtTokenDto.getUserId());
+            } catch (Exception e) {
+                throw new LBUStudentsRuntimeException(AUTH_SERVICE_USER_UPDATE_ERROR.getErrorMessage(), AUTH_SERVICE_USER_UPDATE_ERROR.getErrorCode());
+            }
             CourseDto courseDto = courseService.getCourseDetails(courseHref); // Fetch course details.
             return savedStudent; // Return the saved student.
         }
