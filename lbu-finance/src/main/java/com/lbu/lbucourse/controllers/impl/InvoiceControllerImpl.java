@@ -37,6 +37,15 @@ public class InvoiceControllerImpl implements InvoiceController {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Retrieves finance details for the authenticated user identified by the provided token. It first validates the user's
+     * authentication token to get their unique href. Then, it fetches all invoices associated with that user. If any model
+     * conversion error occurs during the mapping of invoices to DTOs, it logs the error and throws an LBUFinanceRuntimeException
+     * with an internal error message and code. Otherwise, it returns a ResponseEntity containing the FinanceInvoiceDtos.
+     *
+     * @param token The authentication token of the user.
+     * @return ResponseEntity containing FinanceInvoiceDtos.
+     */
     @Override
     public ResponseEntity<FinanceInvoiceDtos> getFinanceDetailsForUser(String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -52,6 +61,15 @@ public class InvoiceControllerImpl implements InvoiceController {
         return ResponseEntity.ok(invoiceDtos);
     }
 
+    /**
+     * Cancels the invoice identified by the provided reference for the authenticated user identified by the provided token.
+     * It validates the user's authentication token to get their unique href, then cancels the invoice using the InvoiceService.
+     * Upon successful cancellation, it constructs a MessageDto indicating the success and returns it within a ResponseEntity.
+     *
+     * @param reference The reference of the invoice to cancel.
+     * @param token     The authentication token of the user.
+     * @return ResponseEntity containing MessageDto indicating the cancellation success.
+     */
     @Override
     public ResponseEntity<MessageDto> cancelInvoice(String reference, String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -62,6 +80,15 @@ public class InvoiceControllerImpl implements InvoiceController {
         return ResponseEntity.ok(messageDto);
     }
 
+    /**
+     * Pays the invoice identified by the provided reference for the authenticated user identified by the provided token.
+     * It validates the user's authentication token to get their unique href, then pays the invoice using the InvoiceService.
+     * Upon successful payment, it constructs a MessageDto indicating the success and returns it within a ResponseEntity.
+     *
+     * @param reference The reference of the invoice to pay.
+     * @param token     The authentication token of the user.
+     * @return ResponseEntity containing MessageDto indicating the payment success.
+     */
     @Override
     public ResponseEntity<MessageDto> payInvoice(String reference, String token) {
         String authUserHref = authService.validateAuthUserHref(token);

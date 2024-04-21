@@ -44,6 +44,17 @@ public class StudentServiceImpl implements StudentService {
         this.libraryService = libraryService;
     }
 
+    /**
+     * Creates a student enrolment in the system. Validates the provided user and course HREFs, and the authentication token.
+     * If the student already exists, adds course details to their enrolment and updates related services accordingly.
+     * If the student is new, creates a new student record, updates authentication status, and sets up related services.
+     * Handles database access exceptions and rolls back the transaction in case of any exception.
+     *
+     * @param authUserHref The HREF of the authenticated user.
+     * @param courseHref   The HREF of the course to enrol the student in.
+     * @param token        The authentication token.
+     * @return The created or updated student record.
+     */
     @Transactional(rollbackOn = Exception.class)
     @Override
     public Student createStudentEnrolment(String authUserHref, String courseHref, String token) {
@@ -91,6 +102,16 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * Updates details of an existing student in the system. Validates the provided student object and authentication token.
+     * If the student exists, updates their details and saves the changes to the database.
+     * Throws an exception if the student is not found.
+     * Handles database access exceptions and rolls back the transaction in case of any exception.
+     *
+     * @param student   The student object containing updated details.
+     * @param authToken The authentication token.
+     * @return The updated student record.
+     */
     @Transactional(rollbackOn = Exception.class)
     @Override
     public Student updateStudentDetails(Student student, String authToken) {
@@ -115,6 +136,18 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * Retrieves student details either by auth user HREF or student ID, validating the authentication token.
+     * If authUserHref is provided, retrieves the student by authUserHref.
+     * If studentId is provided, retrieves the student by studentId.
+     * Throws an exception if neither authUserHref nor studentId is provided or if the student is not found.
+     * Handles database access exceptions.
+     *
+     * @param authUserHref The HREF of the authenticated user.
+     * @param studentId    The ID of the student.
+     * @param authToken    The authentication token.
+     * @return The student details.
+     */
     @Override
     public Student getStudentDetailsFromAuthIdOrStudentId(String authUserHref, String studentId, String authToken) {
         authService.validateAuthUserHref(authUserHref, authToken);

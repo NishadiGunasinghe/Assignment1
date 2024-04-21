@@ -12,8 +12,14 @@ public interface TransactionRepository extends JpaRepository<Transaction, String
 
         List<Transaction> findAllByStudent_AuthUserHrefAndDateReturnedIsNull(String authUserHref);
 
-        @Query(value = "select * from transaction t where t.date_returned is null  and DATE_ADD(t.date_borrowed, INTERVAL :bookReturnSeconds SECOND) < CURRENT_TIMESTAMP", nativeQuery = true)
-        List<Transaction> findAllDateReturnedIsNull(Long bookReturnSeconds);
+        @Query(value = """
+                select * 
+                from transaction t 
+                where t.date_returned is null  
+                and DATE_ADD(t.date_borrowed, INTERVAL :bookReturnSeconds SECOND) < CURRENT_TIMESTAMP
+                and student_id = (select stu.id from student stu where stu.auth_user_href = :authUserHref)
+                """, nativeQuery = true)
+        List<Transaction> findAllDateReturnedIsNull(Long bookReturnSeconds, String authUserHref);
         List<Transaction> findAllByBook_IsbnAndDateReturnedIsNull(String isbn);
 
 }

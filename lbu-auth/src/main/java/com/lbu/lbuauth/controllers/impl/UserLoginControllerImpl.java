@@ -34,20 +34,37 @@ public class UserLoginControllerImpl implements UserLoginController {
         this.authenticationManager = authenticationManager;
     }
 
+    /**
+     * Authenticates a user based on the provided login credentials.
+     *
+     * @param loginDto The login credentials containing username and password.
+     * @return ResponseEntity containing a JWT token upon successful authentication.
+     * @throws LBUAuthRuntimeException if authentication fails.
+     */
     @Override
     public ResponseEntity<JWTTokenDto> login(LoginDto loginDto) {
+        // Authenticate user with provided credentials
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginDto.getUserName(), loginDto.getPassword()));
         if (authentication.isAuthenticated()) {
+            // If authenticated, generate JWT token and return
             log.info("user successfully authenticated {}", loginDto.getUserName());
             return ResponseEntity.ok(userService.generateLoginToken(modelMapper.map(loginDto, User.class), true));
         } else {
+            // If authentication fails, throw exception
             log.error(INVALID_CREDENTIALS.getErrorMessage());
             throw new LBUAuthRuntimeException(INVALID_CREDENTIALS.getErrorMessage(), INVALID_CREDENTIALS.getErrorCode());
         }
     }
 
+    /**
+     * Resends activation token for the user account.
+     *
+     * @param userId The ID of the user account.
+     * @return ResponseEntity containing a message confirming token resend.
+     */
     @Override
     public ResponseEntity<MessageDto> reSendActivateUserAccount(String userId) {
+        // Resend activation token for user account
         log.info("resend account activation for user [{}]", userId);
         userService.reSendActivateToken(userId);
         MessageDto messageDto = new MessageDto();
@@ -57,14 +74,29 @@ public class UserLoginControllerImpl implements UserLoginController {
         return ResponseEntity.ok(messageDto);
     }
 
+    /**
+     * Updates the role of a user.
+     *
+     * @param userId    The ID of the user to update.
+     * @param authToken The authentication token for authorization.
+     * @return ResponseEntity containing a JWT token with updated user role.
+     */
     @Override
     public ResponseEntity<JWTTokenDto> updateUserRole(String userId, String authToken) {
+        // Update user role and generate new JWT token
         log.info("Updating the user into STUDENT {}", userId);
         return ResponseEntity.ok(userService.generateLoginToken(userService.updateUserRole(userId, authToken), false));
     }
 
+    /**
+     * Activates a user account using the activation token.
+     *
+     * @param token The activation token.
+     * @return ResponseEntity containing a message confirming account activation.
+     */
     @Override
     public ResponseEntity<MessageDto> activateUserAccount(String token) {
+        // Activate user account using activation token
         log.info("sending token for activation [{}]", token);
         userService.activateAccount(token);
         MessageDto messageDto = new MessageDto();
@@ -74,8 +106,15 @@ public class UserLoginControllerImpl implements UserLoginController {
         return ResponseEntity.ok(messageDto);
     }
 
+    /**
+     * Validates the provided JWT token.
+     *
+     * @param jwtTokenDto The JWT token to validate.
+     * @return ResponseEntity containing a message confirming token validity.
+     */
     @Override
     public ResponseEntity<MessageDto> validateToken(JWTTokenDto jwtTokenDto) {
+        // Validate JWT token
         MessageDto messageDto = new MessageDto();
         userService.validateToken(jwtTokenDto.getJwtToken());
         messageDto.setMessage(JWT_VALID_TOKEN.getMessage());

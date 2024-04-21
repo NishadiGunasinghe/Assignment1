@@ -42,11 +42,23 @@ public class JwtServiceImpl implements JwtService {
     @Value("${custom.properties.jwt.issuer}")
     private String tokenIssuer;
 
+    /**
+     * Constructor for JwtServiceImpl.
+     * @param secretDetailRepository Repository for managing secret details.
+     * @param userRepository Repository for managing user data.
+     */
     public JwtServiceImpl(SecretDetailRepository secretDetailRepository, UserRepository userRepository) {
         this.secretDetailRepository = secretDetailRepository;
         this.userRepository = userRepository;
     }
 
+    /**
+     * Validates the authentication user by verifying the authenticity of the JWT token.
+     * @param authUserId The ID of the authenticated user.
+     * @param authToken The JWT token to validate.
+     * @return The authenticated user ID if valid.
+     * @throws LBUAuthRuntimeException If authentication fails due to token mismatch or invalid token.
+     */
     @Override
     public String validateAuthUser(String authUserId, String authToken) {
         Matcher matcher = BEARER_PATTERN.matcher(authToken);
@@ -61,6 +73,12 @@ public class JwtServiceImpl implements JwtService {
         throw new LBUAuthRuntimeException(JWT_TOKEN_INVALID.getErrorMessage(), JWT_TOKEN_INVALID.getErrorCode());
     }
 
+    /**
+     * Retrieves authentication details from the JWT token.
+     * @param authToken The JWT token.
+     * @return Authentication details.
+     * @throws LBUAuthRuntimeException If an error occurs during token validation or user retrieval.
+     */
     public Authentication getAuthentication(String authToken) {
         try {
             Claims claims = validateAndGetClaims(authToken);
@@ -80,10 +98,21 @@ public class JwtServiceImpl implements JwtService {
         }
     }
 
+    /**
+     * Validates the provided JWT token.
+     * @param authToken The JWT token to validate.
+     * @return True if the token is valid, false otherwise.
+     */
     public boolean validateToken(String authToken) {
         return !validateAndGetClaims(authToken).isEmpty();
     }
 
+    /**
+     * Generates a JWT token for the given user.
+     * @param selectedUser The user for whom the token is generated.
+     * @return DTO containing the generated JWT token.
+     * @throws LBUAuthRuntimeException If an error occurs during token generation.
+     */
     @Override
     public JWTTokenDto generateJwtToken(User selectedUser) {
         try {
@@ -121,6 +150,12 @@ public class JwtServiceImpl implements JwtService {
         }
     }
 
+    /**
+     * Validates and retrieves claims from the JWT token.
+     * @param authToken The JWT token to validate.
+     * @return Claims extracted from the token.
+     * @throws LBUAuthRuntimeException If an error occurs during token validation or parsing.
+     */
     private Claims validateAndGetClaims(String authToken) {
         try {
             SecretDetails secretDetails = secretDetailRepository.findBySecretType(SecretType.JWT_SECRET);
@@ -149,12 +184,24 @@ public class JwtServiceImpl implements JwtService {
         }
     }
 
+    /**
+     * Converts a string representation of a private key to a PrivateKey object.
+     *
+     * @param privateKeyString The string representation of the private key.
+     * @return PrivateKey object.
+     * @throws NoSuchAlgorithmException If the specified algorithm for key generation is invalid.
+     * @throws InvalidKeySpecException If the provided key specification is invalid.
+     */
     private PrivateKey stringToPrivateKey(String privateKeyString) throws NoSuchAlgorithmException, InvalidKeySpecException {
         return KeyFactory.getInstance("RSA")
                 .generatePrivate(new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyString.trim())));
     }
 
-
+    /**
+     * Generates a secret key pair for JWT token signing.
+     * @return Wrapper containing the generated public and private keys.
+     * @throws NoSuchAlgorithmException If the specified key pair generation algorithm is invalid.
+     */
     private SecretWrapper generateSecretWrapper() throws NoSuchAlgorithmException {
         // Generating KeyPair
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
@@ -166,12 +213,22 @@ public class JwtServiceImpl implements JwtService {
         return secretWrapper;
     }
 
-    // Convert public/private key to string
+    /**
+     * Converts a public/private key to its string representation.
+     * @param key The key to be converted.
+     * @return String representation of the key.
+     */
     private String keyToString(Key key) {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
-    // Convert string to a public key
+    /**
+     * Converts a string representation of a public key to a PublicKey object.
+     * @param publicKeyString The string representation of the public key.
+     * @return PublicKey object.
+     * @throws InvalidKeySpecException If the provided key specification is invalid.
+     * @throws NoSuchAlgorithmException If the specified algorithm for key generation is invalid.
+     */
     private PublicKey stringToPublicKey(String publicKeyString) throws InvalidKeySpecException, NoSuchAlgorithmException {
         return KeyFactory.getInstance("RSA")
                 .generatePublic(new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyString.trim())));

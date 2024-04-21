@@ -16,6 +16,14 @@ import static com.lbu.lbulibrary.commons.constants.ErrorConstants.JWT_TOKEN_USER
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles exceptions of type LBULibraryRuntimeException. It constructs a MessageDto with the error message and code
+     * from the exception, logs the error, and returns an appropriate ResponseEntity. If the error code indicates a JWT
+     * token user mismatch, it returns a FORBIDDEN status; otherwise, it returns a BAD_REQUEST status.
+     *
+     * @param ex The LBULibraryRuntimeException to handle.
+     * @return A ResponseEntity containing the error message and status.
+     */
     @ExceptionHandler(LBULibraryRuntimeException.class)
     public ResponseEntity<MessageDto> handleException(LBULibraryRuntimeException ex) {
         MessageDto errorDto = new MessageDto();
@@ -29,6 +37,13 @@ public class GlobalExceptionHandler {
         }
     }
 
+    /**
+     * Handles exceptions of type SQLIntegrityConstraintViolationException. It constructs a MessageDto with the error
+     * message and a predefined error code, logs the error, and returns a ResponseEntity with a BAD_REQUEST status.
+     *
+     * @param ex The SQLIntegrityConstraintViolationException to handle.
+     * @return A ResponseEntity containing the error message and status.
+     */
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<MessageDto> handleSqlIntegrateViolation(SQLIntegrityConstraintViolationException ex) {
         MessageDto errorDto = new MessageDto();
@@ -37,5 +52,4 @@ public class GlobalExceptionHandler {
         log.error("An error occurred {}", ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
     }
-
 }

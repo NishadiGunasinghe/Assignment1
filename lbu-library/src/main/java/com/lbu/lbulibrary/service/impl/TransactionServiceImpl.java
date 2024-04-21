@@ -18,6 +18,15 @@ public class TransactionServiceImpl implements TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
+
+    /**
+     Retrieves a list of transactions associated with the authenticated user's href. It queries the transaction repository
+     to find all transactions where the student's AuthUserHref matches the provided authUserHref and the date returned
+     is null, indicating ongoing transactions. Returns a list of Transaction objects matching the criteria.
+
+     @param authUserHref The href of the authenticated user whose transactions are to be retrieved.
+     @return A list of Transaction objects associated with the authenticated user's href and ongoing transactions.
+     */
     @Override
     public List<Transaction> getTransactionsByAuthUserHref(String authUserHref) {
         return transactionRepository.findAllByStudent_AuthUserHrefAndDateReturnedIsNull(authUserHref);

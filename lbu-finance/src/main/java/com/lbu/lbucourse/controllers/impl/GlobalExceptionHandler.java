@@ -14,6 +14,15 @@ import static com.lbu.lbucourse.commons.constants.ErrorConstants.JWT_TOKEN_USER_
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles exceptions of type LBUFinanceRuntimeException. It creates a MessageDto object with the error message and code
+     * from the exception, logs the error, and returns a ResponseEntity containing the error details with an appropriate
+     * HTTP status code. If the error code is related to JWT token user mismatch, it returns a FORBIDDEN status code;
+     * otherwise, it returns a BAD_REQUEST status code.
+     *
+     * @param ex The LBUFinanceRuntimeException object to handle.
+     * @return A ResponseEntity containing the error message and code.
+     */
     @ExceptionHandler(LBUFinanceRuntimeException.class)
     public ResponseEntity<MessageDto> handleException(LBUFinanceRuntimeException ex) {
         MessageDto errorDto = new MessageDto();
@@ -26,5 +35,6 @@ public class GlobalExceptionHandler {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
         }
     }
+
 
 }

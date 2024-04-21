@@ -43,6 +43,13 @@ public class StudentServiceImpl implements StudentService {
         this.transactionRepository = transactionRepository;
     }
 
+    /**
+     * Creates a new student record in the database. It attempts to save the provided student details into the repository.
+     * Upon successful creation, it logs the student's ID. If any exception occurs during this process, it catches the
+     * exception, logs the error, and throws an LBULibraryRuntimeException with an internal error message and code.
+     *
+     * @param student The student object to be created.
+     */
     @Transactional(rollbackOn = Exception.class)
     @Override
     public void createNewStudent(Student student) {
@@ -55,6 +62,14 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * Retrieves a student record by the provided authentication user href. It queries the repository for the student
+     * associated with the given authentication user href. If the student is found, it returns the student object. If not
+     * found, it throws an LBULibraryRuntimeException indicating that the student is not available.
+     *
+     * @param authUserHref The authentication user href associated with the student.
+     * @return The student object retrieved from the database.
+     */
     @Override
     public Student getStudentByAuthUserHref(String authUserHref) {
         Optional<Student> studentOptional = studentRepository.findStudentByAuthUserHref(authUserHref);
@@ -62,6 +77,14 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new LBULibraryRuntimeException(STUDENT_NOT_AVAILABLE.getErrorMessage(), STUDENT_NOT_AVAILABLE.getErrorCode()));
     }
 
+    /**
+     * Allows a student to borrow a book. It checks if the student has already borrowed the book and if there are available
+     * copies of the book. If conditions are met, it creates a new transaction for the borrowed book. If not, it throws
+     * appropriate exceptions indicating the issue.
+     *
+     * @param isbn         The ISBN of the book to be borrowed.
+     * @param authUserHref The authentication user href of the student.
+     */
     @Transactional(rollbackOn = Exception.class)
     @Override
     public void borrowBook(String isbn, String authUserHref) {
@@ -90,6 +113,14 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * Allows a student to return a borrowed book. It verifies if the book has been borrowed by the student and if it has
+     * not already been returned. If conditions are met, it updates the transaction with the return date. If not, it throws
+     * appropriate exceptions indicating the issue.
+     *
+     * @param isbn         The ISBN of the book to be returned.
+     * @param authUserHref The authentication user href of the student.
+     */
     @Transactional(rollbackOn = Exception.class)
     @Override
     public void returnBook(String isbn, String authUserHref) {
@@ -114,6 +145,14 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+    /**
+     * Retrieves a student record by the provided authentication user href. It queries the repository for the student
+     * associated with the given authentication user href. If the student is found, it returns the student object. If not
+     * found, it throws an LBULibraryRuntimeException indicating that the student is not available.
+     *
+     * @param authUserHref The authentication user href associated with the student.
+     * @return The student object retrieved from the database.
+     */
     private Student getStudent(String authUserHref) {
         return studentRepository.findStudentByAuthUserHref(authUserHref)
                 .orElseThrow(() -> new LBULibraryRuntimeException(STUDENT_NOT_AVAILABLE.getErrorMessage(), STUDENT_NOT_AVAILABLE.getErrorCode()));

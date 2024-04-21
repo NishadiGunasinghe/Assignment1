@@ -30,10 +30,21 @@ public class BookFineServiceImpl implements BookFineService {
         this.financeService = financeService;
     }
 
+
+    /**
+     Checks for fines associated with overdue book returns for a specified user.
+     This method creates a new thread to asynchronously check for overdue book transactions
+     in the database. It retrieves all transactions where the return date is null and matches
+     the authenticated user. If any such transactions are found, it iterates through them,
+     logging each transaction ID and initiating a fine for the associated student via the
+     finance service. If an exception occurs during the process, it is caught and logged.
+     @param token The authentication token for the user.
+     @param authUserHref The href of the authenticated user.
+     */
     public void checkForBookFines(String token, String authUserHref) {
         Thread bookFineCheckThread = new Thread(() -> {
             try {
-                List<Transaction> transactions = transactionRepository.findAllDateReturnedIsNull(bookReturnTimeInSeconds);
+                List<Transaction> transactions = transactionRepository.findAllDateReturnedIsNull(bookReturnTimeInSeconds, authUserHref);
                 if (!transactions.isEmpty()) {
                     log.info("checking for student who was not returned books {}", transactions.size());
                     for (Transaction transaction : transactions) {

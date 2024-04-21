@@ -27,10 +27,23 @@ public class EmailServiceImpl implements EmailService {
 
     private final AccountActivationDetailsRepository activationDetailsRepository;
 
+    /**
+     * Initializes an EmailServiceImpl with the provided AccountActivationDetailsRepository.
+     *
+     * @param activationDetailsRepository The repository used to access account activation details.
+     */
     public EmailServiceImpl(AccountActivationDetailsRepository activationDetailsRepository) {
         this.activationDetailsRepository = activationDetailsRepository;
     }
 
+    /**
+     * Sends or resends an activation link to the specified user. If an activation link exists and is still valid,
+     * it checks whether the resend limit has been exceeded. If so, the existing activation details are deleted, and a new
+     * activation link is sent. Otherwise, an exception is thrown indicating that the existing activation token is still valid.
+     * If no activation details exist, a new activation link is sent.
+     *
+     * @param user The user to send the activation link to.
+     */
     @Override
     public void sendOrResendActivationLink(User user) {
         Optional<AccountActivationDetails> activationDetails = activationDetailsRepository.findByUser_Username(user.getUsername());
@@ -50,6 +63,13 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    /**
+     * Sends an activation email to the specified user. It generates a unique token, logs the email content, saves the
+     * activation details, and sends the email. If any exception occurs during this process, it is caught and rethrown
+     * as an LBUAuthRuntimeException.
+     *
+     * @param user The user to send the activation email to.
+     */
     private void sendActivation(User user) {
         try {
             String token = UUID.randomUUID().toString();
@@ -64,4 +84,5 @@ public class EmailServiceImpl implements EmailService {
             throw new LBUAuthRuntimeException(EMAIL_SEND_FAILED.getErrorMessage(), e, EMAIL_SEND_FAILED.getErrorCode());
         }
     }
+
 }

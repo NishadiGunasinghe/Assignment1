@@ -27,6 +27,14 @@ public class AccountControllerImpl implements AccountController {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Retrieves the finance account details for the authenticated user specified by the provided token. It validates
+     * the user's authentication, retrieves the account details, and maps them to a FinanceAccountDto using ModelMapper.
+     * If any exception occurs during the mapping process, it is caught and rethrown as an LBUFinanceRuntimeException.
+     *
+     * @param token The authentication token for the user.
+     * @return ResponseEntity containing the FinanceAccountDto if successful.
+     */
     @Override
     public ResponseEntity<FinanceAccountDto> getFinanceDetailsForUser(String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -40,6 +48,16 @@ public class AccountControllerImpl implements AccountController {
         }
     }
 
+    /**
+     * Creates a new finance account based on the provided FinanceAccountDto and the authentication token. It validates
+     * the finance request, validates the user's authentication, maps the FinanceAccountDto to an Account using ModelMapper,
+     * creates the finance account, and maps the created account to a FinanceAccountDto. If any exception occurs during the
+     * process, it is caught and rethrown as an LBUFinanceRuntimeException.
+     *
+     * @param accountDto The FinanceAccountDto containing the details of the account to be created.
+     * @param token      The authentication token for the user.
+     * @return ResponseEntity containing the created FinanceAccountDto if successful.
+     */
     @Override
     public ResponseEntity<FinanceAccountDto> createFinanceAccount(FinanceAccountDto accountDto, String token) {
         validateFinanceRequest(accountDto);
@@ -60,6 +78,5 @@ public class AccountControllerImpl implements AccountController {
             throw new LBUFinanceRuntimeException(INTERNAL_ERROR.getErrorMessage(), INTERNAL_ERROR.getErrorCode(), e);
         }
     }
-
 
 }

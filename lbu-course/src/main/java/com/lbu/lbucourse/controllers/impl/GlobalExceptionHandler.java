@@ -16,6 +16,13 @@ import static com.lbu.lbucourse.commons.constants.ErrorConstants.COURSE_ALREADY_
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    /**
+     * Handles LBUCourcesRuntimeException by creating a MessageDto with the error message and code from the exception,
+     * logging the error, and returning a ResponseEntity with status code 400 (BAD_REQUEST) and the error message.
+     *
+     * @param ex The LBUCourcesRuntimeException that occurred.
+     * @return A ResponseEntity containing a MessageDto with the error message and code.
+     */
     @ExceptionHandler(LBUCourcesRuntimeException.class)
     public ResponseEntity<MessageDto> handleException(LBUCourcesRuntimeException ex) {
         MessageDto errorDto = new MessageDto();
@@ -25,6 +32,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
     }
 
+    /**
+     * Handles SQLIntegrityConstraintViolationException by creating a MessageDto with a predefined error message and code,
+     * logging the error, and returning a ResponseEntity with status code 400 (BAD_REQUEST) and the error message.
+     *
+     * @param ex The SQLIntegrityConstraintViolationException that occurred.
+     * @return A ResponseEntity containing a MessageDto with the predefined error message and code.
+     */
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<MessageDto> handleException(SQLIntegrityConstraintViolationException ex) {
         MessageDto errorDto = new MessageDto();
@@ -33,5 +47,6 @@ public class GlobalExceptionHandler {
         log.error("An error occurred {}", ex.getMessage(), ex);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
     }
+
 
 }

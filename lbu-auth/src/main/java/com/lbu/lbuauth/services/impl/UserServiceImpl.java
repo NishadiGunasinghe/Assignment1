@@ -34,6 +34,17 @@ public class UserServiceImpl implements UserService {
     @Value("${custom.properties.account.activation.resend.hours}")
     private Long resendLimit;
 
+    /**
+     * Constructor for UserServiceImpl class.
+     * Initializes the UserServiceImpl with necessary dependencies.
+     *
+     * @param passwordEncoder               Password encoder for encoding passwords.
+     * @param userRepository                Repository for User entities.
+     * @param jwtService                    Service for JWT token management.
+     * @param emailService                  Service for sending emails.
+     * @param activationDetailsRepository   Repository for AccountActivationDetails entities.
+     */
+
     public UserServiceImpl(
             PasswordEncoder passwordEncoder,
             UserRepository userRepository,
@@ -46,6 +57,17 @@ public class UserServiceImpl implements UserService {
         this.emailService = emailService;
         this.activationDetailsRepository = activationDetailsRepository;
     }
+
+    /**
+     * Creates a new user.
+     * Validates the content before saving.
+     * Sets default values for user roles and enables.
+     * Saves the user to the database.
+     * Sends an activation link to the user's email.
+     *
+     * @param user The user to be created.
+     * @return The saved user.
+     */
 
     @Transactional(rollbackOn = Exception.class)
     @Override
@@ -64,6 +86,17 @@ public class UserServiceImpl implements UserService {
         log.info("successfully send an email to user [{}]", user.getUsername());
         return savedUser;
     }
+
+    /**
+     * Generates a JWT token for user login.
+     * Checks if the user exists and is enabled.
+     * Validates the password if required.
+     * Generates a JWT token for the user.
+     *
+     * @param user           The user attempting to login.
+     * @param isPasswordCheck Whether to validate the user's password.
+     * @return A DTO containing the generated JWT token.
+     */
 
     @Override
     public JWTTokenDto generateLoginToken(User user, boolean isPasswordCheck) {
@@ -98,6 +131,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Retrieves a user by user ID.
+     * Validates the authenticity of the user through JWT token.
+     *
+     * @param userId    The ID of the user to retrieve.
+     * @param authToken JWT token for user authentication.
+     * @return The user corresponding to the given user ID.
+     * @throws LBUAuthRuntimeException If the user is not found.
+     */
+
     @Override
     public User getUserByUserId(String userId, String authToken) {
         jwtService.validateAuthUser(userId, authToken);
@@ -109,6 +152,14 @@ public class UserServiceImpl implements UserService {
                             ACCOUNT_NOT_AVAILABLE_USER_ID_ERROR.getErrorCode());
                 });
     }
+
+    /**
+     * Activates a user account using the activation token.
+     * Deletes the activation token after successful activation.
+     *
+     * @param token The activation token.
+     * @throws LBUAuthRuntimeException If the activation token is invalid or expired.
+     */
 
     @Transactional(rollbackOn = Exception.class)
     @Override
@@ -152,6 +203,14 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * Resends the activation token to a user for account activation.
+     * Checks if the previous token is still valid for resending.
+     *
+     * @param userId The ID of the user to resend the activation token.
+     * @throws LBUAuthRuntimeException If the previous token is expired or invalid.
+     */
+
     @Transactional(rollbackOn = Exception.class)
     @Override
     public void reSendActivateToken(String userId) {
@@ -181,10 +240,26 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Validates the authenticity of a JWT token.
+     *
+     * @param token The JWT token to validate.
+     */
+
     @Override
     public void validateToken(String token) {
         jwtService.validateToken(token);
     }
+
+    /**
+     * Updates the role of a user to STUDENT.
+     * Validates the authenticity of the user through JWT token.
+     *
+     * @param userId    The ID of the user to update the role.
+     * @param authToken JWT token for user authentication.
+     * @return The updated user with the new role.
+     * @throws LBUAuthRuntimeException If the user is not found.
+     */
 
     @Transactional(rollbackOn = Exception.class)
     @Override

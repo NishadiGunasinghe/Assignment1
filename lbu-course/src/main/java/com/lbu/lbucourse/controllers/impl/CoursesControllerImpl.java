@@ -29,6 +29,15 @@ public class CoursesControllerImpl implements CoursesController {
         this.courseService = courseService;
     }
 
+    /**
+     * Retrieves details of multiple courses based on the provided list of course IDs. Validates each course ID, retrieves
+     * course details from the service layer, maps them to DTOs, and constructs a response entity with the course DTOs.
+     * If any exception occurs during the conversion or retrieval process, it is logged and rethrown as an LBUCourcesRuntimeException.
+     *
+     * @param courseIds List of course IDs to retrieve details for.
+     * @return ResponseEntity containing CourseDtos with details of the retrieved courses.
+     */
+
     @Override
     public ResponseEntity<CourseDtos> getCourses(List<String> courseIds) {
         for (String courseId : courseIds) {
@@ -52,6 +61,15 @@ public class CoursesControllerImpl implements CoursesController {
         }
     }
 
+    /**
+     * Retrieves details of a single course based on the provided course ID. Validates the course ID, retrieves the course
+     * details from the service layer, maps it to a DTO, and constructs a response entity with the course DTO.
+     * If any exception occurs during the conversion or retrieval process, it is logged and rethrown as an LBUCourcesRuntimeException.
+     *
+     * @param courseId The ID of the course to retrieve details for.
+     * @return ResponseEntity containing CourseDto with details of the retrieved course.
+     */
+
     @Override
     public ResponseEntity<CourseDto> getCourse(String courseId) {
         validateCourseId(courseId);
@@ -68,6 +86,14 @@ public class CoursesControllerImpl implements CoursesController {
         }
     }
 
+    /**
+     * Deletes the course with the specified course ID. Validates the course ID and deletes the course via the service layer.
+     * Constructs a message DTO indicating successful deletion and returns it in a response entity.
+     *
+     * @param courseId The ID of the course to delete.
+     * @return ResponseEntity containing a MessageDto indicating successful deletion.
+     */
+
     @Override
     public ResponseEntity<MessageDto> deleteCourse(String courseId) {
         validateCourseId(courseId);
@@ -78,6 +104,15 @@ public class CoursesControllerImpl implements CoursesController {
         messageDto.setCode(200);
         return ResponseEntity.ok(messageDto);
     }
+
+    /**
+     * Creates a new course based on the provided CourseDto. Validates the course DTO, maps it to a Course entity, and
+     * creates the course via the service layer. Constructs a response entity containing the created course DTO.
+     * If any exception occurs during the conversion or creation process, it is logged and rethrown as an LBUCourcesRuntimeException.
+     *
+     * @param courseDto The DTO containing details of the course to be created.
+     * @return ResponseEntity containing the created CourseDto.
+     */
 
     @Override
     public ResponseEntity<CourseDto> createCourse(CourseDto courseDto) {
@@ -100,6 +135,15 @@ public class CoursesControllerImpl implements CoursesController {
         }
         return ResponseEntity.ok(courseDto);
     }
+
+    /**
+     * Updates an existing course based on the provided CourseDto. Validates the course DTO, maps it to a Course entity,
+     * updates the course via the service layer, and constructs a response entity containing the updated course DTO.
+     * If any exception occurs during the conversion or update process, it is logged and rethrown as an LBUCourcesRuntimeException.
+     *
+     * @param courseDto The DTO containing details of the course to be updated.
+     * @return ResponseEntity containing the updated CourseDto.
+     */
 
     @Override
     public ResponseEntity<CourseDto> updateCourse(CourseDto courseDto) {
@@ -124,6 +168,14 @@ public class CoursesControllerImpl implements CoursesController {
         }
         return ResponseEntity.ok(courseDto);
     }
+
+    /**
+     * Retrieves details of all available courses. Retrieves all courses from the service layer, maps them to DTOs,
+     * and constructs a response entity with the course DTOs. If any exception occurs during the conversion or retrieval process,
+     * it is logged and rethrown as an LBUCourcesRuntimeException.
+     *
+     * @return ResponseEntity containing CourseDtos with details of all available courses.
+     */
 
     @Override
     public ResponseEntity<CourseDtos> getCourses() {

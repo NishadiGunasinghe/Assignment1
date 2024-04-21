@@ -38,6 +38,14 @@ public class LibraryStudentControllerImpl implements LibraryStudentController {
         this.bookFineService = bookFineService;
     }
 
+    /**
+     * Validates the user's authentication token, creates a new student with the authenticated user's href,
+     * and saves the student. It then constructs a message indicating successful creation of the student
+     * and returns it as a ResponseEntity with HTTP status 200.
+     *
+     * @param token The authentication token of the user.
+     * @return ResponseEntity containing a message indicating successful creation of the student.
+     */
     @Override
     public ResponseEntity<MessageDto> createStudent(String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -50,6 +58,15 @@ public class LibraryStudentControllerImpl implements LibraryStudentController {
         return ResponseEntity.ok(messageDto);
     }
 
+    /**
+     * Validates the user's authentication token, checks for any book fines associated with the user,
+     * retrieves the student details based on the authenticated user's href, constructs a StudentDto
+     * with borrowed book details, and returns it as a ResponseEntity with HTTP status 200.
+     * If any error occurs during model conversion, it is logged and rethrown as an LBULibraryRuntimeException.
+     *
+     * @param token The authentication token of the user.
+     * @return ResponseEntity containing the details of the student.
+     */
     @Override
     public ResponseEntity<StudentDto> getStudent(String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -70,6 +87,16 @@ public class LibraryStudentControllerImpl implements LibraryStudentController {
         }
     }
 
+    /**
+     * Validates the user's authentication token, checks for any book fines associated with the user,
+     * and borrows a book for the authenticated user based on the provided ISBN.
+     * It then constructs a message indicating successful book borrowing and returns it
+     * as a ResponseEntity with HTTP status 200.
+     *
+     * @param isbn  The ISBN of the book to borrow.
+     * @param token The authentication token of the user.
+     * @return ResponseEntity containing a message indicating successful book borrowing.
+     */
     @Override
     public ResponseEntity<MessageDto> borrowBook(String isbn, String token) {
         String authUserHref = authService.validateAuthUserHref(token);
@@ -81,6 +108,16 @@ public class LibraryStudentControllerImpl implements LibraryStudentController {
         return ResponseEntity.ok(messageDto);
     }
 
+    /**
+     * Validates the user's authentication token, checks for any book fines associated with the user,
+     * and returns a borrowed book for the authenticated user based on the provided ISBN.
+     * It then constructs a message indicating successful book return and returns it
+     * as a ResponseEntity with HTTP status 200.
+     *
+     * @param isbn  The ISBN of the book to return.
+     * @param token The authentication token of the user.
+     * @return ResponseEntity containing a message indicating successful book return.
+     */
     @Override
     public ResponseEntity<MessageDto> returnBook(String isbn, String token) {
         String authUserHref = authService.validateAuthUserHref(token);

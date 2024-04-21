@@ -55,7 +55,7 @@ services:
     restart: always
     environment:
       - 'spring.datasource.url=jdbc:mysql://lbu-course-db:3306/lbu_course'
-      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQHP2ppT/mwIAbpM8xTpDwnppKtdzWDfejNmHgBCW7XRqtz4jSS2cB4DBZdkyety5aLvCRLpcgPR2dSXiefq5O+ly5bBsc+5iuUDfzBo47CljlYL6VXFsMtU/XImcPT3BRLBc0Dcuzpcv5QxEMO8juPO0sQcgXsOxsO8Tk70r38KoopjslJNqEn+Vk1xGfjRXw+2yvLL52E7IHgCSvZOcGfVoMo1pOUQA8kMixRnTggyPS1vec78RrguAc/yUIrtF8pT+E1EldPgWWuIMHbVnqz1C5G1Ds95P2hl4qN6clgrpOyNCB+yfxbqrjKPCJYC4ZElb85crB3LRfhCxpfWWwIDAQAB'
       - 'DB_HOST=lbu-course-db'
   lbu-student:
     build:
@@ -66,7 +66,7 @@ services:
     restart: always
     environment:
       - 'spring.datasource.url=jdbc:mysql://lbu-student-db:3306/lbu_student'
-      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQHP2ppT/mwIAbpM8xTpDwnppKtdzWDfejNmHgBCW7XRqtz4jSS2cB4DBZdkyety5aLvCRLpcgPR2dSXiefq5O+ly5bBsc+5iuUDfzBo47CljlYL6VXFsMtU/XImcPT3BRLBc0Dcuzpcv5QxEMO8juPO0sQcgXsOxsO8Tk70r38KoopjslJNqEn+Vk1xGfjRXw+2yvLL52E7IHgCSvZOcGfVoMo1pOUQA8kMixRnTggyPS1vec78RrguAc/yUIrtF8pT+E1EldPgWWuIMHbVnqz1C5G1Ds95P2hl4qN6clgrpOyNCB+yfxbqrjKPCJYC4ZElb85crB3LRfhCxpfWWwIDAQAB'
       - 'DB_HOST=lbu-student-db'
       - 'custom.properties.auth.baseurl=http://lbu-auth:8080'
       - 'custom.properties.course.baseurl=http://lbu-course:8081'
@@ -81,7 +81,7 @@ services:
     restart: always
     environment:
       - 'spring.datasource.url=jdbc:mysql://lbu-finance-db:3306/lbu_finance'
-      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQHP2ppT/mwIAbpM8xTpDwnppKtdzWDfejNmHgBCW7XRqtz4jSS2cB4DBZdkyety5aLvCRLpcgPR2dSXiefq5O+ly5bBsc+5iuUDfzBo47CljlYL6VXFsMtU/XImcPT3BRLBc0Dcuzpcv5QxEMO8juPO0sQcgXsOxsO8Tk70r38KoopjslJNqEn+Vk1xGfjRXw+2yvLL52E7IHgCSvZOcGfVoMo1pOUQA8kMixRnTggyPS1vec78RrguAc/yUIrtF8pT+E1EldPgWWuIMHbVnqz1C5G1Ds95P2hl4qN6clgrpOyNCB+yfxbqrjKPCJYC4ZElb85crB3LRfhCxpfWWwIDAQAB'
       - 'DB_HOST=lbu-finance-db'
   lbu-library:
     build:
@@ -92,5 +92,6 @@ services:
     restart: always
     environment:
       - 'spring.datasource.url=jdbc:mysql://lbu-library-db:3306/lbu_library'
-      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQHP2ppT/mwIAbpM8xTpDwnppKtdzWDfejNmHgBCW7XRqtz4jSS2cB4DBZdkyety5aLvCRLpcgPR2dSXiefq5O+ly5bBsc+5iuUDfzBo47CljlYL6VXFsMtU/XImcPT3BRLBc0Dcuzpcv5QxEMO8juPO0sQcgXsOxsO8Tk70r38KoopjslJNqEn+Vk1xGfjRXw+2yvLL52E7IHgCSvZOcGfVoMo1pOUQA8kMixRnTggyPS1vec78RrguAc/yUIrtF8pT+E1EldPgWWuIMHbVnqz1C5G1Ds95P2hl4qN6clgrpOyNCB+yfxbqrjKPCJYC4ZElb85crB3LRfhCxpfWWwIDAQAB'
       - 'DB_HOST=lbu-library-db'
+      - 'custom.properties.finance.baseurl=http://lbu-finance:8083'
