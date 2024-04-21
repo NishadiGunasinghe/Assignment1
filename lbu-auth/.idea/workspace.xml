@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="65d10fb8-ce9b-4ebe-936e-bd9e9894d786" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/Assignment_1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/UserControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/UserControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/UserLoginControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/controllers/impl/UserLoginControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/EmailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/JwtServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/JwtServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lbu/lbuauth/services/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/lbu/lbuauth/LbuAuthApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/controllers/impl/CoursesControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/controllers/impl/CoursesControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/controllers/impl/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/controllers/impl/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/services/impl/CourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-course/src/main/java/com/lbu/lbucourse/services/impl/CourseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-course/src/test/java/com/lbu/lbucourse/LbuCourseApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/AccountControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/AccountControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/InvoiceControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/controllers/impl/InvoiceControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/services/impl/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/services/impl/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/services/impl/InvoiceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-finance/src/main/java/com/lbu/lbucourse/services/impl/InvoiceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-finance/src/test/java/com/lbu/lbucourse/LbuFinanceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/LibraryBooksControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/LibraryBooksControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/LibraryStudentControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/controllers/impl/LibraryStudentControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/repositories/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/repositories/TransactionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/service/impl/BookFineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lbu-library/src/main/java/com/lbu/lbulibrary/service/impl/BookFineServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="lbu-auth" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2fOzicnLwAb5f8c0i1z0vlHRuG6" />
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/Desktop/LBU homework/SESC/Assignment_Code/Assignment_1/lbu-auth/build/libs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;10b5d90ad13f2e57c77103b8713637e4&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\Desktop\LBU homework\SESC\Assignment_Code\Assignment_1\lbu-auth\build\libs" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="gradle clean build" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.compose.yml.lbu-library: Compose Deployment">
+    <configuration name="lbu-auth [clean build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="LbuAuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="lbu-auth.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.lbu.lbuauth.LbuAuthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yml.lbu-finance: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="lbu-finance" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yml.lbu-library: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="lbu-library" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.compose.yml.lbu-library: Compose Deployment" />
+        <item itemvalue="Docker.compose.yml.lbu-finance: Compose Deployment" />
+        <item itemvalue="Gradle.lbu-auth [clean build]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="65d10fb8-ce9b-4ebe-936e-bd9e9894d786" name="Changes" comment="" />
+      <created>1713687040846</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713687040846</updated>
+      <workItem from="1713687041809" duration="1265000" />
+      <workItem from="1713708069323" duration="1808000" />
+      <workItem from="1713721673317" duration="30000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
