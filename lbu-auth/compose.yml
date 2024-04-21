@@ -1,0 +1,96 @@
+version: '3.8'
+name: lbu_student_management
+services:
+  lbu-auth-db:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=lbu_auth'
+      - 'MYSQL_ROOT_PASSWORD=1234'
+    ports:
+      - "3307:3306"
+  lbu-course-db:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=lbu_course'
+      - 'MYSQL_ROOT_PASSWORD=1234'
+    ports:
+      - "3308:3306"
+  lbu-student-db:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=lbu_student'
+      - 'MYSQL_ROOT_PASSWORD=1234'
+    ports:
+      - "3309:3306"
+  lbu-finance-db:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=lbu_finance'
+      - 'MYSQL_ROOT_PASSWORD=1234'
+    ports:
+      - "3310:3306"
+  lbu-library-db:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=lbu_library'
+      - 'MYSQL_ROOT_PASSWORD=1234'
+    ports:
+      - "3311:3306"
+  lbu-auth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      - 'spring.datasource.url=jdbc:mysql://lbu-auth-db:3306/lbu_auth'
+      - 'DB_HOST=lbu-auth-db'
+  lbu-course:
+    build:
+      context: .
+      dockerfile: Dockerfile_course
+    ports:
+      - "8081:8081"
+    restart: always
+    environment:
+      - 'spring.datasource.url=jdbc:mysql://lbu-course-db:3306/lbu_course'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'DB_HOST=lbu-course-db'
+  lbu-student:
+    build:
+      context: .
+      dockerfile: Dockerfile_student
+    ports:
+      - "8082:8082"
+    restart: always
+    environment:
+      - 'spring.datasource.url=jdbc:mysql://lbu-student-db:3306/lbu_student'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'DB_HOST=lbu-student-db'
+      - 'custom.properties.auth.baseurl=http://lbu-auth:8080'
+      - 'custom.properties.course.baseurl=http://lbu-course:8081'
+      - 'custom.properties.finance.baseurl=http://lbu-finance:8083'
+      - 'custom.properties.library.baseurl=http://lbu-library:8084'
+  lbu-finance:
+    build:
+      context: .
+      dockerfile: Dockerfile_finance
+    ports:
+      - "8083:8083"
+    restart: always
+    environment:
+      - 'spring.datasource.url=jdbc:mysql://lbu-finance-db:3306/lbu_finance'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'DB_HOST=lbu-finance-db'
+  lbu-library:
+    build:
+      context: .
+      dockerfile: Dockerfile_library
+    ports:
+      - "8084:8084"
+    restart: always
+    environment:
+      - 'spring.datasource.url=jdbc:mysql://lbu-library-db:3306/lbu_library'
+      - 'custom.properties.jwt.public.key=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwYTZIdzWTp4n1ugag2ak2PHrm9YeQb4AAiJOYji4l8+nmukSuUywfhS1bfhez/AShAoI+Ti0pAzjTf1EdrorwjrmQebLIgBubOsxCIs1fNYJNtrgeW14AEiZZslKRBSBxssFG/oxXmgFArntSGgCqXnYmlKmcmX1QoKpZMJZwBUp72d9ZwLiIG1TrYqIwP/Dgto1Xt+xwIyUDkEHOIiutdriQB7JcUIHeJdDq41KznyBVG+7Bmk8KFhBep42J7xUS8rrurHHn9a015PtmcKNmuM7X8UeNYvCql4wmx4thPhz0SW5lbSqL6fi1xxQhIlc0W9Pifuz4cStmae6voHsowIDAQAB'
+      - 'DB_HOST=lbu-library-db'

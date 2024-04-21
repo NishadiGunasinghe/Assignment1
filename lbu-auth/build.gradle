@@ -1,0 +1,53 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.0-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.lbu'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+bootJar {
+	archiveFileName = 'lbu_auth.jar' // Replace 'your-application-name' with your desired JAR file name
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '6.2.2'
+	compileOnly 'org.projectlombok:lombok'
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.5'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	//developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
