@@ -19,7 +19,7 @@ public interface StudentService {
 
     Student updateStudentDetails(Student student, String authToken);
 
-    Student getStudentDetailsFromAuthIdOrStudentId(String id, String studentId, String authToken);
+    Student getStudentDetailsFromAuthIdOrStudentId(String authUserHref, String studentId, String authToken);
 
     default void validateStudent(Student student) {
         validateHrefAndGetId(student.getAuthUserHref());
